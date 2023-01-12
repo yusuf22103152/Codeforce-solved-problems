@@ -4,28 +4,29 @@ using namespace std;
 
 int main() {
     ios::sync_with_stdio(false);
-    cin.tie(NULL);cout.tie(NULL);
-    int t,n,m;
+    cin.tie(0);cout.tie(0);
+
+    int t,n,m,x,max;
     cin>>t;
     while(t--) {
+        map<int,int> m45,m135;
         cin>>n>>m;
-        int a[n][m],xSum=0;
-        for(int i=0;i<n;i++) for(int j=0;j<m;j++) cin>>a[i][j];
+        int a[n][m];
         for(int i=0;i<n;i++) {
             for(int j=0;j<m;j++) {
-                int LT=0,RT=0,LB=0,RB=0,x,y,sum=0;
-                x=i,y=j;
-                while(x>=0 && y>=0) LT+=a[x][y],x--,y--;
-                x=i,y=j;
-                while(x>=0 && y<m) RT+=a[x][y],x--,y++;
-                x=i,y=j;
-                while(x<n && y>=0) LB+=a[x][y],x++,y--;
-                x=i,y=j;
-                while(x<n && y<m) RB+=a[x][y],x++,y++;
-                sum=LT+RT+LB+RB-a[i][j]*3;
-                if(sum>xSum) xSum=sum;
+                cin>>a[i][j];
+                m45[i+j]+=a[i][j];
+                m135[i-j]+=a[i][j];
             }
         }
-        cout<<xSum<<endl;
+        max=0;
+        for(int i=0;i<n;i++) {
+            for(int j=0;j<m;j++) {
+                x=m45[i+j]+m135[i-j]-a[i][j];
+                if(x>max) max=x;
+            }
+        }
+        cout<<max<<endl;
     }
 }
+
