@@ -1,4 +1,4 @@
-#https://codeforces.com/contest/1766/problem/B
+//https://codeforces.com/contest/1766/problem/B
 import java.util.*;
 public class Notepad_Sharp {
     public static void main(String[] args) {
