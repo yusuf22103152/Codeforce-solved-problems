@@ -4,25 +4,24 @@ using namespace std;
 int main() {
     ios::sync_with_stdio(false);
     cin.tie(NULL);cout.tie(NULL);
-    int t,n,x;
-    cin>>t;
-    while(t--) {
-       cin>>n;
-       bool s=true;
-       stack<int> e,o;
-       e.push(0);
-       o.push(0);
-       while(n--) {
-         cin>>x;
-         if(x%2) {
-           if(x<o.top()) s=false;
-           else if(s) o.push(x);
-         }
-         else {
-           if(x<e.top()) s=false;
-           else if(s) e.push(x);
-         }
-       }
-       s?cout<<"YES\n":cout<<"NO\n";
+    long long int c,q;
+    for(cin>>q;q--;) {
+        string s,t;
+        cin>>s>>t;
+        if(t=="a") c=1;
+        else {
+            bool hasA=false;
+            for(auto x:t) {
+                if(x=='a') {
+                    hasA=true;
+                    break;
+                }
+            }
+            if(hasA) c=-1;
+            else {
+                c=pow(2,s.size());
+            }
+        }
+        cout<<c<<endl;
     }
 }
